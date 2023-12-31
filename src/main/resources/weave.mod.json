@@ -1,0 +1,13 @@
+{
+  "name": "Health Indicator",
+  "author": "svxf",
+  "version": "1.0",
+  "link": "https://github.com/svxf/HealthIndicator",
+  "modId": "healthindicator",
+  "mixinConfigs": [
+    "main.mixins.json"
+  ],
+  "entrypoints": [
+    "com.svxf.healthindicator.Main"
+  ]
+}

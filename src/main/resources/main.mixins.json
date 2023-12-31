@@ -1,0 +1,7 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "package": "com.svxf.healthindicator.mixins",
+  "mixins": [
+    "RendererLivingEntityMixin"
+  ]
+}
