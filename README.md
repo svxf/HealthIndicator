@@ -1,5 +1,7 @@
 # Health Indicator
-A port of [Gaider10's HealthIndicator](https://modrinth.com/mod/playerhealthindicators) mod
+Idea from [Gaider10's HealthIndicator](https://modrinth.com/mod/playerhealthindicators) mod.
+
+Uses some of his code aswell.
 
 ## Commands: 
 
