@@ -1,6 +1,6 @@
 package com.svxf.healthindicator.utils;
 
-import com.svxf.healthindicator.HealthIndicator;
+import com.svxf.healthindicator.Main;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
@@ -13,6 +13,6 @@ public class Utils {
     }
 
     public static boolean shouldRenderHeartsForEntity(EntityPlayer entity) {
-        return (entity != Minecraft.getMinecraft().thePlayer) && (!entity.isInvisible() || (entity.isInvisible() && HealthIndicator.instance.getConfig().showInvis)) && ((entity.deathTime == 0));
+        return (entity != Minecraft.getMinecraft().thePlayer) && (!entity.isInvisible() || (entity.isInvisible() && Main.config.showInvis)) && ((entity.deathTime == 0));
     }
 }

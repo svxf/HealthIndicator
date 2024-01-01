@@ -1,6 +1,7 @@
 package com.svxf.healthindicator;
 
 import com.svxf.healthindicator.command.*;
+import com.svxf.healthindicator.config.HealthIndicatorConfig;
 import com.svxf.healthindicator.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
@@ -13,16 +14,17 @@ import org.lwjgl.input.Mouse;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.gitlab.candicey.zenithloader.ZenithLoader;
+import com.gitlab.candicey.zenithloader.dependency.Dependencies;
 
 public class Main implements ModInitializer {
 
     public KeyBinding key = new KeyBinding("Health Indicators", 38, "Health Indicator Mod");
 
+    public static HealthIndicatorConfig config;
     @Override
     public void preInit() {
         System.out.println("Initializing HealthIndicator!");
-        HealthIndicator hi = HealthIndicator.getInstance();
-        hi.Init(System.getProperty("user.home") + "/.weave/mods");
 
         CommandBus.register(new Help());
         CommandBus.register(new Distance());
@@ -38,21 +40,29 @@ public class Main implements ModInitializer {
             keyBindings.add(key);
             Minecraft.getMinecraft().gameSettings.keyBindings = keyBindings.toArray(new KeyBinding[0]);
         });
+
+        ZenithLoader.INSTANCE.loadDependencies(
+                Dependencies.INSTANCE.getConcentra().invoke(
+                        "healthindicator"
+                )
+        );
+
+        EventBus.subscribe(StartGameEvent.Pre.class, (event) -> config = new HealthIndicatorConfig());
     }
 
     @SubscribeEvent
     public void onKeyPress(KeyboardEvent e) {
         if (Keyboard.getEventKey() == key.getKeyCode() && e.getKeyState()) {
-            Utils.print("Visiblity has set to "+ EnumChatFormatting.RED + !HealthIndicator.getInstance().getConfig().enabled + EnumChatFormatting.RESET + ".");
-            HealthIndicator.getInstance().getConfig().enabled = !HealthIndicator.getInstance().getConfig().enabled;
+            Utils.print("Visiblity has set to "+ EnumChatFormatting.RED + !Main.config.enabled + EnumChatFormatting.RESET + ".");
+            Main.config.enabled = !Main.config.enabled;
         }
     }
 
     @SubscribeEvent
     public void onMousePress(MouseEvent e) {
         if (Mouse.getEventButton() == key.getKeyCode() + 100 && e.getButtonState()) {
-            Utils.print("Visiblity has set to "+ EnumChatFormatting.RED + !HealthIndicator.getInstance().getConfig().enabled + EnumChatFormatting.RESET + ".");
-            HealthIndicator.getInstance().getConfig().enabled = !HealthIndicator.getInstance().getConfig().enabled;
+            Utils.print("Visiblity has set to "+ EnumChatFormatting.RED + !Main.config.enabled + EnumChatFormatting.RESET + ".");
+            Main.config.enabled = !Main.config.enabled;
         }
     }
 }

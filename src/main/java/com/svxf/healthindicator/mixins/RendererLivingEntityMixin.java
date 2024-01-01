@@ -1,6 +1,6 @@
 package com.svxf.healthindicator.mixins;
 
-import com.svxf.healthindicator.HealthIndicator;
+import com.svxf.healthindicator.Main;
 import com.svxf.healthindicator.utils.HeartType;
 import com.svxf.healthindicator.utils.Utils;
 import net.minecraft.client.Minecraft;
@@ -27,13 +27,13 @@ public abstract class RendererLivingEntityMixin<T extends EntityLivingBase> exte
 
     @Inject(method = "renderName(Lnet/minecraft/entity/EntityLivingBase;DDD)V", at = @At("HEAD"), cancellable = true)
     private void onRenderLabel(EntityLivingBase entity, double x, double y, double z, CallbackInfo ci) {
-        if (HealthIndicator.instance.getConfig().enabled)
+        if (Main.config.enabled)
         {
             if (entity instanceof EntityPlayer en) {
                 if (!Utils.shouldRenderHeartsForEntity(en)) return;
                 GlStateManager.pushMatrix();
 
-                GlStateManager.translate((float) x + 0.0f, (float) y + en.height + 0.5F + HealthIndicator.instance.getConfig().offset, (float) z);
+                GlStateManager.translate((float) x + 0.0f, (float) y + en.height + 0.5F + Main.config.offset, (float) z);
 
                 GL11.glNormal3f(0.0F, 1.0F, 0.0F);
 
@@ -46,8 +46,8 @@ public abstract class RendererLivingEntityMixin<T extends EntityLivingBase> exte
                 float totalDistance = (float) Math.sqrt(distanceXZ * distanceXZ + distanceY * distanceY);
 
                 float disScale = (totalDistance / 4F / 150F) * 2F;
-                float scale = HealthIndicator.instance.getConfig().scale;
-                if (mc.thePlayer.getDistanceToEntity(en) > HealthIndicator.instance.getConfig().distance) {
+                float scale = Main.config.scale;
+                if (mc.thePlayer.getDistanceToEntity(en) > Main.config.distance) {
                     GL11.glScalef((float) (-disScale * scale), (float) (-disScale * scale), (float) (disScale * scale));
                 } else {
                     GlStateManager.scale(-0.02666667F, -0.02666667F, 0.02666667F);

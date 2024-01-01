@@ -1,7 +1,7 @@
 package com.svxf.healthindicator.command;
 
-import com.svxf.healthindicator.Config;
-import com.svxf.healthindicator.HealthIndicator;
+import com.svxf.healthindicator.Main;
+import com.svxf.healthindicator.config.HealthIndicatorConfig;
 import com.svxf.healthindicator.utils.Utils;
 import net.minecraft.util.EnumChatFormatting;
 import net.weavemc.loader.api.command.Command;
@@ -11,12 +11,10 @@ public class Distance extends Command {
         super("heartdistance", "hd");
     }
 
-    HealthIndicator hi = HealthIndicator.getInstance();
-    Config config = hi.getConfig();
+    HealthIndicatorConfig config = Main.config;
 
     private void set(float value) {
         config.distance = value;
-        hi.saveConfig();
         Utils.print("Distance has set to "+EnumChatFormatting.RED + value + EnumChatFormatting.RESET + ".");
     }
 

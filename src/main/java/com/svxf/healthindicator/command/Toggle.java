@@ -1,7 +1,7 @@
 package com.svxf.healthindicator.command;
 
-import com.svxf.healthindicator.Config;
-import com.svxf.healthindicator.HealthIndicator;
+import com.svxf.healthindicator.Main;
+import com.svxf.healthindicator.config.HealthIndicatorConfig;
 import com.svxf.healthindicator.utils.Utils;
 import net.minecraft.util.EnumChatFormatting;
 import net.weavemc.loader.api.command.Command;
@@ -11,12 +11,10 @@ public class Toggle extends Command {
         super("togglehealthindicator", "togglehi");
     }
 
-    HealthIndicator hi = HealthIndicator.getInstance();
-    Config config = hi.getConfig();
+    HealthIndicatorConfig config = Main.config;
 
     private void set(boolean value) {
         config.enabled = value;
-        hi.saveConfig();
         Utils.print("Visiblity has set to "+EnumChatFormatting.RED + value + EnumChatFormatting.RESET + ".");
     }
 
