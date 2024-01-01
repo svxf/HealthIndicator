@@ -1,13 +1,11 @@
 package com.svxf.healthindicator;
 
-import com.svxf.healthindicator.command.*;
 import com.svxf.healthindicator.config.HealthIndicatorConfig;
 import com.svxf.healthindicator.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.util.EnumChatFormatting;
 import net.weavemc.loader.api.ModInitializer;
-import net.weavemc.loader.api.command.CommandBus;
 import net.weavemc.loader.api.event.*;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -25,13 +23,6 @@ public class Main implements ModInitializer {
     @Override
     public void preInit() {
         System.out.println("Initializing HealthIndicator!");
-
-        CommandBus.register(new Help());
-        CommandBus.register(new Distance());
-        CommandBus.register(new InvisToggle());
-        CommandBus.register(new Offset());
-        CommandBus.register(new Scale());
-        CommandBus.register(new Toggle());
 
         EventBus.subscribe(this);
         EventBus.subscribe(StartGameEvent.Post.class, e -> {
@@ -53,16 +44,16 @@ public class Main implements ModInitializer {
     @SubscribeEvent
     public void onKeyPress(KeyboardEvent e) {
         if (Keyboard.getEventKey() == key.getKeyCode() && e.getKeyState()) {
-            Utils.print("Visiblity has set to "+ EnumChatFormatting.RED + !Main.config.enabled + EnumChatFormatting.RESET + ".");
-            Main.config.enabled = !Main.config.enabled;
+            Utils.print("Visiblity has set to "+ EnumChatFormatting.RED + !Main.config.indicatorEnabled + EnumChatFormatting.RESET + ".");
+            Main.config.indicatorEnabled = !Main.config.indicatorEnabled;
         }
     }
 
     @SubscribeEvent
     public void onMousePress(MouseEvent e) {
         if (Mouse.getEventButton() == key.getKeyCode() + 100 && e.getButtonState()) {
-            Utils.print("Visiblity has set to "+ EnumChatFormatting.RED + !Main.config.enabled + EnumChatFormatting.RESET + ".");
-            Main.config.enabled = !Main.config.enabled;
+            Utils.print("Visiblity has set to "+ EnumChatFormatting.RED + !Main.config.indicatorEnabled + EnumChatFormatting.RESET + ".");
+            Main.config.indicatorEnabled = !Main.config.indicatorEnabled;
         }
     }
 }

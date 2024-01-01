@@ -27,7 +27,7 @@ public abstract class RendererLivingEntityMixin<T extends EntityLivingBase> exte
 
     @Inject(method = "renderName(Lnet/minecraft/entity/EntityLivingBase;DDD)V", at = @At("HEAD"), cancellable = true)
     private void onRenderLabel(EntityLivingBase entity, double x, double y, double z, CallbackInfo ci) {
-        if (Main.config.enabled)
+        if (Main.config.indicatorEnabled)
         {
             if (entity instanceof EntityPlayer en) {
                 if (!Utils.shouldRenderHeartsForEntity(en)) return;

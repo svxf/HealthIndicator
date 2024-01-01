@@ -13,7 +13,7 @@ public class HealthIndicatorConfig extends Config {
             description = "Global toggle.",
             subcategory = "Health Indicators"
     )
-    public boolean enabled = true;
+    public boolean indicatorEnabled = true;
 
     @Switch(
             name = "Show Invis",
