@@ -3,6 +3,8 @@ Idea from [Gaider10's HealthIndicator](https://modrinth.com/mod/playerhealthindi
 
 Uses some of his code aswell.
 
+This mod is **ONLY** available to use while using Weave, join the discord here -> https://discord.gg/TTNu3XaQua
+
 ## Commands: 
 
 ### /health 
