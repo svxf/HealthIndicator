@@ -33,25 +33,15 @@ public abstract class RendererLivingEntityMixin<T extends EntityLivingBase> exte
                 if (!Utils.shouldRenderHeartsForEntity(en)) return;
                 GlStateManager.pushMatrix();
 
-                GlStateManager.translate((float) x + 0.0f, (float) y + en.height + 0.5F + Main.config.offset, (float) z);
+                GlStateManager.translate((float)x + 0.0f, (float)y + en.height + 0.5F - (en.isChild() ? en.height / 2.0F : 0.0F) + Main.config.offset, (float)z);
 
                 GL11.glNormal3f(0.0F, 1.0F, 0.0F);
 
                 GlStateManager.rotate(-mc.getRenderManager().playerViewY, 0.0F, 1.0F, 0.0F);
                 GlStateManager.rotate(mc.getRenderManager().playerViewX, 1.0F, 0.0F, 0.0F);
 
-                float distanceXZ = (float) Math.sqrt((en.posX - mc.thePlayer.posX) * (en.posX - mc.thePlayer.posX) + (en.posZ - mc.thePlayer.posZ) * (en.posZ - mc.thePlayer.posZ));
-                float distanceY = (float) Math.abs(en.posY - mc.thePlayer.posY);
-
-                float totalDistance = (float) Math.sqrt(distanceXZ * distanceXZ + distanceY * distanceY);
-
-                float disScale = (totalDistance / 4F / 150F) * 2F;
-                float scale = Main.config.scale;
-                if (mc.thePlayer.getDistanceToEntity(en) > Main.config.distance) {
-                    GL11.glScalef((float) (-disScale * scale), (float) (-disScale * scale), (float) (disScale * scale));
-                } else {
-                    GlStateManager.scale(-0.02666667F, -0.02666667F, 0.02666667F);
-                }
+                GlStateManager.scale(-0.02666667F, -0.02666667F, 0.02666667F);
+                GlStateManager.translate(0.0F, 9.374999F - 11f, 0.0F);
 
                 GlStateManager.depthMask(false);
                 GlStateManager.disableLighting();

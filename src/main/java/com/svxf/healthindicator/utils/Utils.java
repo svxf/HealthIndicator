@@ -13,6 +13,8 @@ public class Utils {
     }
 
     public static boolean shouldRenderHeartsForEntity(EntityPlayer entity) {
-        return (entity != Minecraft.getMinecraft().thePlayer) && (!entity.isInvisible() || (entity.isInvisible() && Main.config.showInvis)) && ((entity.deathTime == 0));
+        return (entity != Minecraft.getMinecraft().thePlayer || Main.config.renderAboveSelf)
+                && (!entity.isInvisible() || (entity.isInvisible() && Main.config.showInvis))
+                && (entity.deathTime == 0);
     }
 }
