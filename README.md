@@ -5,7 +5,18 @@ Uses some of his code aswell.
 
 This mod is **ONLY** available to use while using Weave, join the discord here -> https://discord.gg/TTNu3XaQua
 
-## Commands: 
+---
+## Concentra Mod
+![image](https://github.com/svxf/HealthIndicator/assets/60079016/a4e27118-29af-43b3-95e1-5718a2ce4161)
+
+### Your settings are saved in a OneConfig > profiles > HealthIndicator.json file in your weave directory. 
+
+---
+
+## Non-Concentra Mod
+The non-Concentra versions will not be receving updates anymore
+
+### Commands: 
 
 ### /health 
 
