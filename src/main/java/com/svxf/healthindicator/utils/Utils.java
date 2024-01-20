@@ -15,6 +15,7 @@ public class Utils {
     public static boolean shouldRenderHeartsForEntity(EntityPlayer entity) {
         return (entity != Minecraft.getMinecraft().thePlayer || Main.config.renderAboveSelf)
                 && (!entity.isInvisible() || (entity.isInvisible() && Main.config.showInvis))
-                && (entity.deathTime == 0);
+                && (entity.deathTime == 0)
+                && (!Main.config.hideInGUI) || (Main.config.hideInGUI && Minecraft.getMinecraft().currentScreen == null);
     }
 }

@@ -29,6 +29,13 @@ public class HealthIndicatorConfig extends Config {
     )
     public boolean renderAboveSelf = false;
 
+    @Switch(
+            name = "Hide in GUI",
+            description = "Whether or not the hearts should render if you hae a GUI opened.",
+            subcategory = "Health Indicators"
+    )
+    public boolean hideInGUI = false;
+
     @Number(
             name = "Offset",
             min = -1.0F,
@@ -37,6 +44,15 @@ public class HealthIndicatorConfig extends Config {
             subcategory = "Health Indicators"
     )
     public float offset = 0.0f;
+
+    @Number(
+            name = "Alpha",
+            min = 0.0F,
+            max = 1.0F,
+            description = "Transparency of the hearts when sneaking.",
+            subcategory = "Health Indicators"
+    )
+    public float alpha = 0.3f;
 
     public HealthIndicatorConfig() {
         super(new Mod("Health Indicators", ModType.HUD), "health-indicators.json");

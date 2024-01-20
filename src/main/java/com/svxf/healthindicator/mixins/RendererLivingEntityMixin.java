@@ -33,7 +33,7 @@ public abstract class RendererLivingEntityMixin<T extends EntityLivingBase> exte
                 if (!Utils.shouldRenderHeartsForEntity(en)) return;
                 GlStateManager.pushMatrix();
 
-                GlStateManager.translate((float)x + 0.0f, (float)y + en.height + 0.5F - (en.isChild() ? en.height / 2.0F : 0.0F) + Main.config.offset, (float)z);
+                GlStateManager.translate((float)x + 0.0f, (float)y + en.height + 0.5F - (en.isSneaking() ? 0.3F : 0.0F) + Main.config.offset, (float)z);
 
                 GL11.glNormal3f(0.0F, 1.0F, 0.0F);
 
@@ -43,9 +43,14 @@ public abstract class RendererLivingEntityMixin<T extends EntityLivingBase> exte
                 GlStateManager.scale(-0.02666667F, -0.02666667F, 0.02666667F);
                 GlStateManager.translate(0.0F, 9.374999F - 11f, 0.0F);
 
-                GlStateManager.depthMask(false);
+                GlStateManager.depthMask(true);
+                GlStateManager.enableDepth();
+
                 GlStateManager.disableLighting();
                 GlStateManager.enableBlend();
+
+                float alpha = en.isSneaking() ? Main.config.alpha : 1.0F;
+                GlStateManager.color(1.0F, 1.0F, 1.0F, alpha);
 
                 int healthRed = (int) Math.ceil(en.getHealth());
                 int maxHealth = (int) Math.ceil(en.getMaxHealth());
@@ -97,9 +102,10 @@ public abstract class RendererLivingEntityMixin<T extends EntityLivingBase> exte
                     }
                 }
 
-                GlStateManager.depthMask(true);
                 GlStateManager.enableLighting();
                 GlStateManager.disableBlend();
+
+                GlStateManager.depthMask(true);
 
                 GlStateManager.popMatrix();
             }
