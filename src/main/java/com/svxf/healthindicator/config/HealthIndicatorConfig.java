@@ -46,6 +46,15 @@ public class HealthIndicatorConfig extends Config {
     public float offset = 0.0f;
 
     @Number(
+            name = "Max View Distance",
+            min = 0.0F,
+            max = 15.0F,
+            description = "Maximum view distance before the hearts will stop rendering.",
+            subcategory = "Health Indicators"
+    )
+    public float maxViewDistance = 10.0f;
+
+    @Number(
             name = "Alpha",
             min = 0.0F,
             max = 1.0F,
